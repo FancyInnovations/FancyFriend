@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Events extends ListenerAdapter {
-    private final Path pingFilePath = Path.of("FancyFriend/ping-settings.json");
+    private final Path pingFilePath = Path.of("data/ping-settings.json");
 
     private final String geyserMsg = "The plugin may not work properly with Geyser as it is not officially supported. Additionally, display entities and other features don't even exist on Bedrock Edition.";
     private final String viaMsg = "The plugin may not work properly with Via plugins as they are not officially supported. Additionally, display entities and other features don't even exist on certain older Minecraft versions.";

@@ -1,7 +1,9 @@
 services:
   fancyfriend:
     image: oliverschlueter/fancyfriend:latest
-    container_name: fancyfriend-app
+    container_name: fancyfriend
+    environment:
+      - "DISCORD_BOT_TOKEN=<TOKEN>"
     volumes:
       - ./fancyfriend-data:/app/data
     restart: always
