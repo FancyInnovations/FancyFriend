@@ -1,5 +1,8 @@
 package com.fancyinnovations.fancyfriend;
 
+import com.fancyinnovations.fancyfriend.events.BanListener;
+import com.fancyinnovations.fancyfriend.events.Events;
+import com.fancyinnovations.fancyfriend.events.JoinLeaveListener;
 import com.fancyinnovations.fancyfriend.utils.Modrinth;
 import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 import net.dv8tion.jda.api.JDA;
@@ -42,7 +45,9 @@ public class FancyFriend {
     }
 
     public void initJDA() {
-        JDABuilder builder = JDABuilder.createDefault("BOT TOKEN");
+        String token = System.getenv("DISCORD_BOT_TOKEN");
+
+        JDABuilder builder = JDABuilder.createDefault(token);
         builder.disableCache(CacheFlag.ACTIVITY, CacheFlag.VOICE_STATE);
         builder.enableIntents(
                 GatewayIntent.GUILD_MEMBERS,
@@ -52,7 +57,9 @@ public class FancyFriend {
         builder.setBulkDeleteSplittingEnabled(false);
         builder.setStatus(OnlineStatus.ONLINE);
         builder.setEnableShutdownHook(false);
-//        builder.addEventListeners(new Events());
+        builder.addEventListeners(new Events());
+        builder.addEventListeners(new JoinLeaveListener());
+        builder.addEventListeners(new BanListener());
         jda = builder.build();
 
         try {
