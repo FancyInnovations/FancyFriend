@@ -1,0 +1,7 @@
+services:
+  fancyfriend:
+    image: oliverschlueter/fancyfriend:latest
+    container_name: fancyfriend-app
+    volumes:
+      - ./fancyfriend-data:/app/data
+    restart: always
