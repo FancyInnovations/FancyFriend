@@ -33,6 +33,9 @@ public class Events extends ListenerAdapter {
         event.deferReply(event.getName().equalsIgnoreCase("noping")).queue();
 
         switch (event.getName()) {
+            case "logs" -> event.getHook().editOriginal("Next time, please use [pastes.dev](https://pastes.dev/) or a similar service to upload your log file")
+                .queue();
+
             case "blankline" -> event.getHook().editOriginal(
                     "To add a blank line in a hologram, use `<r>` on a new line.").queue();
 
