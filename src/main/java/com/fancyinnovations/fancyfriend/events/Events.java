@@ -4,6 +4,7 @@ import com.fancyinnovations.fancyfriend.FancyFriend;
 import com.fancyinnovations.fancyfriend.utils.Modrinth;
 import com.fancyinnovations.fancyfriend.utils.PingWarnings;
 import com.fancyinnovations.fancyfriend.utils.Staff;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
@@ -33,7 +34,7 @@ public class Events extends ListenerAdapter {
         event.deferReply(event.getName().equalsIgnoreCase("noping")).queue();
 
         switch (event.getName()) {
-            case "logs" -> event.getHook().editOriginal("Next time, please use [pastes.dev](<https://pastes.dev/>) or a similar service to upload your log file")
+            case "logs" -> event.getHook().editOriginal("Please use **[pastes.dev](<https://pastes.dev/>)**, **[mclo.gs](<https://mclo.gs/>)** or a similar service to upload your server logs.")
                 .queue();
 
             case "blankline" -> event.getHook().editOriginal(
@@ -114,6 +115,66 @@ public class Events extends ListenerAdapter {
             }
 
             case "via" -> event.getHook().editOriginal(viaMsg).queue();
+            case "plugin_compatibility" -> event.getHook().editOriginalEmbeds(new EmbedBuilder()
+                    .setTitle("Plugin Compatibility")
+                    .setDescription("""
+                            There is no compatibility guarantee for these plugins:
+                            - **[ViaVersion](https://github.com/ViaVersion/ViaVersion)**, **[ViaBackwards](https://github.com/ViaVersion/ViaBackwards)** and **[ViaRewind](https://github.com/ViaVersion/ViaRewind)**
+                              Clients on versions above 1.19.4 should not experience too much issues but some may still occur. Any problems specific to a certain client version are not going to be addressed here, but should instead be reported to Via.
+                            - **[Geyser](https://github.com/GeyserMC/Geyser)**
+                              Java and Bedrock are two completely different platforms. Holograms and NPCs are more than likely to be displayed incorrectly for Bedrock users. No effort will be put into fixing these issues, as they usually originate from Geyser.
+                            """)
+                    .setColor(0xFC5F5F)
+                    .build()).queue();
+            case "software_compatibility" -> event.getHook().editOriginalEmbeds(new EmbedBuilder()
+                    .setTitle("Software Compatibility")
+                    .setDescription("""
+                            Our plugins are tested only on **[Paper](https://github.com/PaperMC/Paper)** and **[Folia](https://github.com/PaperMC/Folia)**. Before reporting any issue, please make sure you are able to **reproduce it** on a **supported** server software.
+                            ### Additional Notes
+                            - **[Folia](<https://github.com/PaperMC/Folia>)**
+                              Folia must be compiled against Mojang mappings. Otherwise plugin won't load.
+                            - **[Purpur](<https://github.com/PurpurMC/Purpur>)**
+                              Tested by the community and confirmed to be fully compatible.
+                            - **[Pufferfish](<https://github.com/pufferfish-gg/Pufferfish>)**
+                              Older versions of Pufferfish (<= 1.19.4) may not fully support Paper plugins. Recent builds should work without any issues.
+                            - **[Leaf](<https://github.com/Winds-Studio/Leaf>)**
+                              Contains a lot of random patches that may negatively impact plugin compatibility, as well as bring number of other unrelated problems.
+                            - **[Mohist](<https://github.com/MohistMC/Mohist>)**, **[ArcLight](https://github.com/IzzelAliz/Arclight)** and other hybrid server software...
+                              Hybrid servers are not, and will never be supported. They're known for causing a lot of problems.
+                            - Anything else remains a mystery. If you have some insights, let us know.
+                            """)
+                    .setColor(0xFC5F5F)
+                    .build()).queue();
+            case "proxy_compatibility" -> event.getHook().editOriginalEmbeds(new EmbedBuilder()
+                    .setTitle("Proxy Compatibility")
+                    .setDescription("""
+                            Our plugins should be fully compatible with all proxies, however - there is a known issue with **[BungeeCord](https://github.com/SpigotMC/BungeeCord)** occasionally kicking players with "team xyz already exists" message.
+                            
+                            It was identified as a BungeeCord issue that was left without a clear resolution. We are still looking for a workaround, so if you have any suggestions - please let us know.
+                            
+                            This problem does not occur on **[Velocity](https://github.com/PaperMC/Velocity)**, which we recommend using instead.
+                            """)
+                    .setColor(0xFC5F5F)
+                    .build()).queue();
+            case "need_more_info" -> event.getHook().editOriginalEmbeds(new EmbedBuilder()
+                    .setTitle("More Information Needed")
+                    .setDescription("""
+                            We need more information to help with your issue. Please provide:
+                            
+                            1. **Server Software and Version**
+                              Send a screenshot or copy-paste the output of `/ver` command.
+                            2. **Plugin Version**
+                              Send a screenshot or copy-paste the output of `/ver PluginName` command.
+                            3. **Plugins List** (Upon Request)
+                              Send a screenshot or copy-paste the output of `/plugins` command.
+                            4. **Server Logs** (Upon Request)
+                              Logs can be uploaded to **[pastes.dev](<https://pastes.dev/>)**, **[mclo.gs](<https://mclo.gs/>)** or a similar service.
+                            
+                            If you haven't already, make sure to describe the issue in as much detail as possible.
+                            """)
+                    .setColor(0xFC5F5F)
+                    .build()).queue();
+
         }
 
 //        BotAnalytics.get().getClient().getEventService().createEvent(
