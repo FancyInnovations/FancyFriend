@@ -95,7 +95,11 @@ public class FancyFriend {
                 Commands.slash("per-line", "Per-line settings not supported message"),
                 Commands.slash("versions", "Get a plugin's supported MC versions")
                         .addOptions(new Modrinth().getProjects()),
-                Commands.slash("via", "ViaVersion not supported message")).queue();
+                Commands.slash("via", "ViaVersion not supported message"),
+                Commands.slash("plugin_compatibility", "Plugin compatibility information"),
+                Commands.slash("software_compatibility", "Server compatibility information"),
+                Commands.slash("proxy_compatibility", "Proxy compatibility information"),
+                Commands.slash("need_more_info", "Guide user to provide more information")).queue();
     }
 
     public void shutdown() {
