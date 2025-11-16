@@ -99,7 +99,9 @@ public class FancyFriend {
                 Commands.slash("plugin_compatibility", "Plugin compatibility information"),
                 Commands.slash("software_compatibility", "Server compatibility information"),
                 Commands.slash("proxy_compatibility", "Proxy compatibility information"),
-                Commands.slash("need_more_info", "Guide user to provide more information")).queue();
+                Commands.slash("need_more_info", "Guide user to provide more information"),
+                Commands.slash("use-minimessage", "Use MiniMessage GIF"),
+                Commands.slash("not-caused-by-us", "Not caused by us GIF")).queue();
     }
 
     public void shutdown() {

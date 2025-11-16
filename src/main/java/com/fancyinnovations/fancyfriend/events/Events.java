@@ -160,7 +160,7 @@ public class Events extends ListenerAdapter {
                     .setTitle("More Information Needed")
                     .setDescription("""
                             We need more information to help with your issue. Please provide:
-                            
+
                             1. **Server Software and Version**
                               Send a screenshot or copy-paste the output of `/ver` command.
                             2. **Plugin Version**
@@ -169,11 +169,15 @@ public class Events extends ListenerAdapter {
                               Send a screenshot or copy-paste the output of `/plugins` command.
                             4. **Server Logs** (Upon Request)
                               Logs can be uploaded to **[pastes.dev](<https://pastes.dev/>)**, **[mclo.gs](<https://mclo.gs/>)** or a similar service.
-                            
+
                             If you haven't already, make sure to describe the issue in as much detail as possible.
                             """)
                     .setColor(0xFC5F5F)
                     .build()).queue();
+
+            case "use-minimessage" -> event.getHook().editOriginal("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeW95dnJ6c29tam4weG1vaHdneHBpam16bDRmZWozZWwwYXJ6OGF4byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7WD3MbBurjoDBQsLzh/giphy.gif").queue();
+
+            case "not-caused-by-us" -> event.getHook().editOriginal("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExODc2ZjhhMzNpdGRma2kwbmY0NTFreHA3YWFrczR6c2MxYnBvNHIzMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/z3BSptUxjpHFJfH6Q5/giphy.gif").queue();
 
         }
 
