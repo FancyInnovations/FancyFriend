@@ -37,6 +37,8 @@ public class Events extends ListenerAdapter {
             case "logs" -> event.getHook().editOriginal("Please use **[pastes.dev](<https://pastes.dev/>)**, **[mclo.gs](<https://mclo.gs/>)** or a similar service to upload your server logs.")
                 .queue();
 
+            case "bedrock" -> event.getHook().editOriginal("Bedrock Edition is **not** supported and never will be. Our plugins are designed exclusively for Java Edition servers.").queue();
+
             case "blankline" -> event.getHook().editOriginal(
                     "To add a blank line in a hologram, use `<r>` on a new line.").queue();
 

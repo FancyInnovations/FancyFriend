@@ -81,6 +81,7 @@ public class FancyFriend {
 
         jda.getGuildById(GUILD_ID).updateCommands().addCommands(
                 Commands.slash("logs", "Use pastes.dev for logs"),
+                Commands.slash("bedrock", "Bedrock Edition support information"),
                 Commands.slash("blankline", "How to add a blank line in a hologram"),
                 Commands.slash("clickable", "Clickable FancyHolograms tutorial"),
                 Commands.slash("converters", "FH & FN converter messages"),
