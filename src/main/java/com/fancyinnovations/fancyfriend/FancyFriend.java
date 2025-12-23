@@ -79,6 +79,18 @@ public class FancyFriend {
                 new Command.Choice("Explicit Only (Ignore Replies)", "explicit"),
                 new Command.Choice("Off", "off"));
 
+        OptionData downloadPluginOptions = new OptionData(
+                OptionType.STRING, "plugin", "The plugin to download", true).addChoices(
+                new Command.Choice("FancyNpcs", "fancynpcs"),
+                new Command.Choice("FancyHolograms", "fancyholograms"),
+                new Command.Choice("FancyDialogs", "fancydialogs"));
+
+        OptionData downloadChannelOptions = new OptionData(
+                OptionType.STRING, "channel", "Release channel (defaults to Latest)", false).addChoices(
+                new Command.Choice("Release", "release"),
+                new Command.Choice("Dev", "beta"),
+                new Command.Choice("Latest", "latest"));
+
         jda.getGuildById(GUILD_ID).updateCommands().addCommands(
                 Commands.slash("logs", "Use pastes.dev for logs"),
                 Commands.slash("bedrock", "Bedrock Edition support information"),
@@ -86,6 +98,8 @@ public class FancyFriend {
                 Commands.slash("clickable", "Clickable FancyHolograms tutorial"),
                 Commands.slash("converters", "FH & FN converter messages"),
                 Commands.slash("docs", "Get the FancyPlugins documentation"),
+                Commands.slash("download", "Get the download link for a plugin")
+                        .addOptions(downloadPluginOptions, downloadChannelOptions),
                 Commands.slash("dw", "Doesn't work message"),
                 Commands.slash("fixed", "Show how to set a hologram to fixed"),
                 Commands.slash("geyser", "Geyser not supported message"),

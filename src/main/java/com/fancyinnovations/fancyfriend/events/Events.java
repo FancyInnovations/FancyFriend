@@ -61,6 +61,8 @@ public class Events extends ListenerAdapter {
             case "docs" -> event.getHook().editOriginal(
                     "Here are the FancyPlugins docs: <https://docs.fancyinnovations.com/>").queue();
 
+            case "download" -> handleDownload(event);
+
             case "dw" -> event.getHook().editOriginal(
                             "\"Didn't/doesn't work\" explains almost nothing. Please provide info (screenshots, error messages, etc) for proper help.")
                     .queue();
@@ -182,6 +184,42 @@ public class Events extends ListenerAdapter {
 //        BotAnalytics.get().getClient().getEventService().createEvent(
 //                BotAnalytics.get().getProjectId(),
 //                new Event("CommandExecuted", Map.of("command", event.getName())));
+    }
+
+    private void handleDownload(SlashCommandInteractionEvent event) {
+        String pluginId = event.getOption("plugin").getAsString();
+        String channel = event.getOption("channel") != null 
+                ? event.getOption("channel").getAsString() 
+                : null;
+
+        String pluginName;
+        switch (pluginId) {
+            case "fancynpcs" -> pluginName = "FancyNpcs";
+            case "fancyholograms" -> pluginName = "FancyHolograms";
+            case "fancydialogs" -> pluginName = "FancyDialogs";
+            default -> {
+                event.getHook().editOriginal("Invalid plugin specified.").queue();
+                return;
+            }
+        }
+
+        String downloadUrl;
+        String channelDisplay;
+        
+        if (channel == null || channel.equals("latest")) {
+            // Default to Latest or explicitly selected Latest
+            downloadUrl = "https://modrinth.com/plugin/" + pluginId + "/version/latest";
+            channelDisplay = "Latest";
+        } else {
+            // Release or Dev (beta)
+            downloadUrl = "https://modrinth.com/plugin/" + pluginId + "/versions?c=" + channel;
+            channelDisplay = channel.equals("release") ? "Release" : "Dev";
+        }
+        
+        event.getHook().editOriginal(
+                "**" + pluginName + "** (" + channelDisplay + ")\n" +
+                "Download: " + downloadUrl
+        ).queue();
     }
 
     private void noPing(SlashCommandInteractionEvent event) {
