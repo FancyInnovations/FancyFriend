@@ -43,7 +43,7 @@ public class Events extends ListenerAdapter {
                     "To add a blank line in a hologram, use `<r>` on a new line.").queue();
 
             case "clickable" -> event.getHook().editOriginal(
-                            "Holograms currently aren't clickable themselves, but [here's](<https://docs.fancyinnovations.com/fancyholograms/tutorials/clickable-holograms/>) a workaround.")
+                            "Holograms currently aren't clickable themselves, but [here's](<https://fancyinnovations.com/docs/minecraft-plugins/fancyholograms/tutorials/clickable-holograms>) a workaround.")
                     .queue();
 
             case "converters" -> {
@@ -59,7 +59,7 @@ public class Events extends ListenerAdapter {
             }
 
             case "docs" -> event.getHook().editOriginal(
-                    "Here are the FancyPlugins docs: <https://docs.fancyinnovations.com/>").queue();
+                    "Here are the FancyPlugins docs: <https://fancyinnovations.com/docs/minecraft-plugins>").queue();
 
             case "download" -> handleDownload(event);
 
@@ -76,7 +76,7 @@ public class Events extends ListenerAdapter {
             case "geyser" -> event.getHook().editOriginal(geyserMsg).queue();
 
             case "interactions" -> event.getHook().editOriginal(
-                            "See [this page](<https://docs.fancyinnovations.com/fancynpcs/tutorials/action-system/>) on how to add interactions to an NPC.")
+                            "See [this page](<https://fancyinnovations.com/docs/minecraft-plugins/fancynpcs/tutorials/action-system>) on how to add interactions to an NPC.")
                     .queue();
 
             case "manual-holo" -> event.getHook().editOriginal("""
@@ -87,7 +87,7 @@ public class Events extends ListenerAdapter {
                     4. Run `/fancyholograms reload` after saving the file""").queue();
 
             case "multiline" -> event.getHook().editOriginal(
-                            "See [this page](<https://docs.fancyinnovations.com/fancynpcs/tutorials/multiple-lines/>) on how to make an NPC name have multiple lines.")
+                            "See [this page](<https://fancyinnovations.com/docs/minecraft-plugins/fancynpcs/tutorials/multiple-lines>) on how to make an NPC name have multiple lines.")
                     .queue();
 
             case "noping" -> noPing(event);
