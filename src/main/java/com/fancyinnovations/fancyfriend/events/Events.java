@@ -4,15 +4,16 @@ import com.fancyinnovations.fancyfriend.FancyFriend;
 import com.fancyinnovations.fancyfriend.utils.Modrinth;
 import com.fancyinnovations.fancyfriend.utils.PingWarnings;
 import com.fancyinnovations.fancyfriend.utils.Staff;
+
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.ErrorHandler;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.ErrorResponse;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -301,14 +302,6 @@ public class Events extends ListenerAdapter {
             new PingWarnings().warn(authorId, event, count);
             StringBuilder pingMessage = new StringBuilder("Hey " + event.getMember()
                     .getEffectiveName() + ", please don't ping staff members!");
-
-            boolean appendTicket = true;
-
-            if (message.getChannelType() == ChannelType.TEXT)
-                if (message.getCategory().getIdLong() == 1112487038160220180L) appendTicket = false;
-
-            if (appendTicket) pingMessage.append(
-                    "\nIf there's something that must be addressed privately, please make a ticket with <#1112486757359960175>");
 
             if (PingWarnings.warnings.get(authorId) > 1 && message.getMessageReference() != null)
                 pingMessage.append("\n-# Please [turn off](https://tenor.com/view/20411479) your reply pings.");
