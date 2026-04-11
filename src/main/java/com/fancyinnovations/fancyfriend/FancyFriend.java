@@ -4,7 +4,7 @@ import com.fancyinnovations.fancyfriend.events.BanListener;
 import com.fancyinnovations.fancyfriend.events.Events;
 import com.fancyinnovations.fancyfriend.events.JoinLeaveListener;
 import com.fancyinnovations.fancyfriend.utils.Modrinth;
-import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
+
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -17,6 +17,8 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import java.util.concurrent.TimeUnit;
+
+import de.oliver.fancyanalytics.logger.ExtendedFancyLogger;
 
 public class FancyFriend {
 
@@ -92,7 +94,7 @@ public class FancyFriend {
                 new Command.Choice("Latest", "latest"));
 
         jda.getGuildById(GUILD_ID).updateCommands().addCommands(
-                Commands.slash("logs", "Use pastes.dev for logs"),
+                Commands.slash("logs", "Requests logs be uploaded to mclo.gs"),
                 Commands.slash("bedrock", "Bedrock Edition support information"),
                 Commands.slash("blankline", "How to add a blank line in a hologram"),
                 Commands.slash("clickable", "Clickable FancyHolograms tutorial"),

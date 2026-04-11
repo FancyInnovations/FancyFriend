@@ -35,7 +35,7 @@ public class Events extends ListenerAdapter {
         event.deferReply(event.getName().equalsIgnoreCase("noping")).queue();
 
         switch (event.getName()) {
-            case "logs" -> event.getHook().editOriginal("Please use **[pastes.dev](<https://pastes.dev/>)**, **[mclo.gs](<https://mclo.gs/>)** or a similar service to upload your server logs.")
+            case "logs" -> event.getHook().editOriginal("Please upload your logs to <https://mclo.gs> and send us the link.")
                 .queue();
 
             case "bedrock" -> event.getHook().editOriginal("Bedrock Edition is **not** supported and never will be. Our plugins are designed exclusively for Java Edition servers.").queue();
@@ -173,7 +173,7 @@ public class Events extends ListenerAdapter {
                             3. **Plugins List** (Upon Request)
                               Send a screenshot or copy-paste the output of `/plugins` command.
                             4. **Server Logs** (Upon Request)
-                              Logs can be uploaded to **[pastes.dev](<https://pastes.dev/>)**, **[mclo.gs](<https://mclo.gs/>)** or a similar service.
+                              Upload your logs to <https://mclo.gs> and send the link.
                             
                             If you haven't already, make sure to describe the issue in as much detail as possible.
                             """)
@@ -189,8 +189,8 @@ public class Events extends ListenerAdapter {
 
     private void handleDownload(SlashCommandInteractionEvent event) {
         String pluginId = event.getOption("plugin").getAsString();
-        String channel = event.getOption("channel") != null 
-                ? event.getOption("channel").getAsString() 
+        String channel = event.getOption("channel") != null
+                ? event.getOption("channel").getAsString()
                 : null;
 
         String pluginName;
@@ -206,7 +206,7 @@ public class Events extends ListenerAdapter {
 
         String downloadUrl;
         String channelDisplay;
-        
+
         if (channel == null || channel.equals("latest")) {
             // Default to Latest or explicitly selected Latest
             downloadUrl = "https://modrinth.com/plugin/" + pluginId + "/version/latest";
@@ -216,7 +216,7 @@ public class Events extends ListenerAdapter {
             downloadUrl = "https://modrinth.com/plugin/" + pluginId + "/versions?c=" + channel;
             channelDisplay = channel.equals("release") ? "Release" : "Dev";
         }
-        
+
         event.getHook().editOriginal(
                 "**" + pluginName + "** (" + channelDisplay + ")\n" +
                 "Download: " + downloadUrl
